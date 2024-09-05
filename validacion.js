@@ -1,4 +1,6 @@
 document.getElementById('regBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+
     // Obtener los valores del formulario
     const nombre = document.getElementById('nombre').value.trim();
     const apellido = document.getElementById('apellido').value.trim();
@@ -19,12 +21,17 @@ document.getElementById('regBtn').addEventListener('click', function(event) {
         errores.push("La contraseña debe tener al menos 6 caracteres.");
     }
 
+    if (password1 !== password2){
+        errores.push("Las contraseñas no coinciden.");
+    }
+
     // Mostrar mensajes de error o éxito
     if (errores.length > 0) {
         showAlertError(errores.join('<br>'));
     } else {
         showAlertSuccess();
     }
+
 });
 
 function showAlertSuccess() {
